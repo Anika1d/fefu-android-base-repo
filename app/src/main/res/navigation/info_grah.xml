@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/info_grah"
+    app:startDestination="@id/friendsFragment">
+
+    <fragment
+        android:id="@+id/friendsFragment"
+        android:name="com.example.treker_fefu.FriendsFragment"
+        android:label="fragment_friends"
+        tools:layout="@layout/fragment_friends" />
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.example.treker_fefu.UserInfoFragment"
+        android:label="fragment_user_info"
+        tools:layout="@layout/fragment_user_info" />
+    <activity
+        android:id="@+id/activityInfoTreker"
+        android:name="com.example.treker_fefu.ActivityInfoTreker"
+        android:label="activity_info_treker"
+        tools:layout="@layout/activity_info_treker" />
+    <fragment
+        android:id="@+id/fragmentStaticData"
+        android:name="com.example.treker_fefu.FragmentStaticData"
+        android:label="fragment_static_data"
+        tools:layout="@layout/fragment_static_data" >
+        <action
+            android:id="@+id/action_fragmentStaticData2_to_friendsFragment"
+            app:destination="@id/friendsFragment" />
+        <action
+            android:id="@+id/action_fragmentStaticData2_to_userInfoFragment"
+            app:destination="@id/userInfoFragment" />
+    </fragment>
+</navigation>
