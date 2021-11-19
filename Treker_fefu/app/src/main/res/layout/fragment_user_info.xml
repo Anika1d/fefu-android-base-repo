@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/infoUserArrival"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!---  <include
+        android:id="@+id/include_rV_arrival_time_ago"
+        layout="@layout/recycle_arrival_time_ago"
+        android:layout_width="405dp"
+        android:layout_height="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+-->
+
+    <TextView
+        android:id="@+id/textSff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E5E5E5"
+        android:text="  Декабрь 2002 года"
+        android:textColor="#808080"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/include_rV_arrival_full_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/include_rV_arrival_full_info"
+        layout="@layout/recycle_arrival_full_info"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSff" />
+</androidx.constraintlayout.widget.ConstraintLayout>

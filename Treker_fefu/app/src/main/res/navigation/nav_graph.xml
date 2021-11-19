@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MainScreenFragment">
+
+    <fragment
+        android:id="@+id/MainScreenFragment"
+        android:name="com.example.treker_fefu.MainScreenFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_main_screen">
+        <action
+            android:id="@+id/action_MainScreenFragment_to_RegisterScreenFragment"
+            app:destination="@id/RegisterScreenFragment" />
+        <action
+            android:id="@+id/action_MainScreenFragment_to_siginScreenFragment"
+            app:destination="@id/siginScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/RegisterScreenFragment"
+        android:name="com.example.treker_fefu.RegisterScreenFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_register_screen">
+        <action
+            android:id="@+id/action_RegisterScreenFragment_to_siginScreenFragment"
+            app:destination="@id/siginScreenFragment" />
+        <action
+            android:id="@+id/action_RegisterScreenFragment_to_MainScreenFragment"
+            app:destination="@id/MainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/siginScreenFragment"
+        android:name="com.example.treker_fefu.SiginScreenFragment"
+        android:label="fragment_sigin_screen"
+        tools:layout="@layout/fragment_sigin_screen" >
+        <action
+            android:id="@+id/action_siginScreenFragment_to_MainScreenFragment"
+            app:destination="@id/MainScreenFragment" />
+        <action
+            android:id="@+id/action_siginScreenFragment_to_activity_info_treker"
+            app:destination="@id/activity_info_treker" />
+    </fragment>
+    <activity
+        android:id="@+id/activity_info_treker"
+        android:name="com.example.treker_fefu.ActivityInfoTreker"
+        android:label="activity_info_treker"
+        tools:layout="@layout/activity_info_treker" />
+</navigation>
