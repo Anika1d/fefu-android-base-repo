@@ -1,23 +1,30 @@
 package com.example.treker_fefu
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.makeText
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.treker_fefu.databinding.FragmentUserInfoBinding
 import com.example.treker_fefu.model.Arrival
-import com.example.treker_fefu.model.ArrivalService
 
 
 class UserInfoFragment : Fragment() {
     private var _binding: FragmentUserInfoBinding? = null
     private val binding get() = _binding!!
-    private val adapter=AdapterArrival()
+    private val adapter=AdapterArrival( object: ArrivalActionListener{
+        override fun onArrivalDetails(arrival: Arrival){
+            //findNavController().navigate(R.id.action_fragmentStaticData_to_fragmentFull_InfoItemArrival)
+            makeText(this@UserInfoFragment.context,"ggggg",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    )
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +46,7 @@ class UserInfoFragment : Fragment() {
         val arrival = Arrival(
             1,
             "Сноубординг",
-            999,
+            1999,
             Triple(10, 11, 2002),
             Triple(11, 5, 5),
             Triple(11, 19, 23)

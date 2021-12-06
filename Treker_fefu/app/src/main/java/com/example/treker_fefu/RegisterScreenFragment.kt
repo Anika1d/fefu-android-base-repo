@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.appcompat.widget.Toolbar
@@ -50,8 +51,8 @@ class RegisterScreenFragment : Fragment() {
 
             }
         }
-        s_r.setSpan(clickableSpanCon, 37, 66, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        s_r.setSpan(clickableSpanRules, 120, 148, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        s_r.setSpan(clickableSpanCon, 39, 70, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        s_r.setSpan(clickableSpanRules, 125, 152, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.agreeRul.setMovementMethod(LinkMovementMethod.getInstance())
 
         binding.agreeRul.setText(s_r)
@@ -60,15 +61,14 @@ class RegisterScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cliker_rules()
-        binding.includeToolbar.myToolbar?.title="Регистрация"
-        binding.includeToolbar.myToolbar?.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        binding.includeToolbar.myToolbar.title="Регистрация"
+        binding.includeToolbar.myToolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_RegisterScreenFragment_to_siginScreenFragment)
         }
-        binding.includeToolbar.myToolbar?.setNavigationOnClickListener {
+        binding.includeToolbar.myToolbar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_RegisterScreenFragment_to_MainScreenFragment)
         }
-
 
 
     }

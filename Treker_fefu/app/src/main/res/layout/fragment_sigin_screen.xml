@@ -11,14 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="12dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="394dp" />
+        app:layout_constraintGuide_begin="12sp" />
 
     <include
         android:id="@+id/include_toolbar"
@@ -37,11 +30,12 @@
 
     <LinearLayout
         android:id="@+id/Input_register"
-        android:layout_width="382dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="20sp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
@@ -89,12 +83,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="294dp"
-        android:layout_height="243dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="294sp"
+        android:layout_height="243sp"
+        android:layout_marginTop="12sp"
         android:src="@drawable/ic_registration_bicyclesx1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/include_toolbar" />
 

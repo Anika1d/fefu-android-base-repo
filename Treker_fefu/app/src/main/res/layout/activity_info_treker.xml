@@ -28,7 +28,7 @@
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/btn_nav"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/info_profile"
+        app:navGraph="@navigation/info_grah"
         tools:layout_editor_absoluteX="1dp" />
 
 

@@ -1,18 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/fragmentProfileInfo"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentProfileInfo">
+<include
+    android:id="@+id/include_toolbar_pr"
+    layout="@layout/toolbar"/>
 
-    <TextView
+    <include
+        android:id="@+id/include_toolbar"
+        layout="@layout/toolbar" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLog"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/hello_blank_fragment"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:layout_marginBottom="1sp"
+        android:hint="@string/login"
+        app:layout_constraintBottom_toTopOf="@+id/textInputNick"
+        app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="username"
+            android:inputType="text"
+            android:textColor="#9E9E9E "
+            android:textColorHighlight="@color/black"
+            android:textColorHint="#757575" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputNick"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1sp"
+        android:hint="@string/nickname"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLog">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nick_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="username"
+            android:inputType="text"
+            android:textColor="#9E9E9E "
+            android:textColorHighlight="@color/black"
+            android:textColorHint="#757575" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/change_password"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16sp"
+        android:layout_marginBottom="144sp"
+        android:text="Изменить пароль"
+        app:layout_constraintBottom_toTopOf="@+id/button_out"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputNick"
+        app:layout_constraintVertical_bias="0.029" />
+    <!--
+    там на дизайне кнопка не вовсю ширину экрана, поэтому
+    ширина в sp
+    -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_out"
+        android:layout_width="378sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16sp"
+        android:background="#B00020"
+        android:text="Выйти"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package com.example.treker_fefu
 
 import android.content.Context
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
@@ -19,8 +18,8 @@ class ActivityInfoTreker : AppCompatActivity() {
         makeCurrentFragment(FragmentStaticData())
         binding.btnNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.staticData -> makeCurrentFragment(FragmentStaticData())
-                R.id.fragmentProfileInfo -> makeCurrentFragment(FragmentProfileInfo())
+                R.id.staticData -> FragmentStaticData()
+                R.id.fragmentProfileInfo -> FragmentProfileInfo()
             }
             true
         }

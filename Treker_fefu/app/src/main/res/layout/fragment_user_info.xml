@@ -6,15 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!---  <include
-        android:id="@+id/include_rV_arrival_time_ago"
-        layout="@layout/recycle_arrival_time_ago"
-        android:layout_width="405dp"
-        android:layout_height="27dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
--->
 
     <TextView
         android:id="@+id/textSff"
