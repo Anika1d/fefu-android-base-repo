@@ -14,12 +14,11 @@
         android:id="@+id/userInfoFragment"
         android:name="com.example.treker_fefu.UserInfoFragment"
         android:label="fragment_user_info"
-        tools:layout="@layout/fragment_user_info" />
-    <activity
-        android:id="@+id/activityInfoTreker"
-        android:name="com.example.treker_fefu.ActivityInfoTreker"
-        android:label="activity_info_treker"
-        tools:layout="@layout/activity_info_treker" />
+        tools:layout="@layout/fragment_user_info" >
+        <action
+            android:id="@+id/action_userInfoFragment_to_fragmentFull_InfoItemArrival"
+            app:destination="@id/fragmentFull_InfoItemArrival" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentStaticData"
         android:name="com.example.treker_fefu.FragmentStaticData"
@@ -32,4 +31,34 @@
             android:id="@+id/action_fragmentStaticData2_to_userInfoFragment"
             app:destination="@id/userInfoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentFull_InfoItemArrival"
+        android:name="com.example.treker_fefu.FragmentFull_InfoItemArrival"
+        android:label="FragmentFull_InfoItemArrival" />
+    <fragment
+        android:id="@+id/fragmentProfileInfo"
+        android:name="com.example.treker_fefu.FragmentProfileInfo"
+        android:label="fragment_profile_info"
+        tools:layout="@layout/fragment_profile_info" >
+        <action
+            android:id="@+id/action_fragmentProfileInfo_to_fragmentChangePassword"
+            app:destination="@id/fragmentChangePassword" />
+        <action
+            android:id="@+id/action_fragmentProfileInfo_to_mainScreenActivity"
+            app:destination="@id/mainScreenActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentChangePassword"
+        android:name="com.example.treker_fefu.FragmentChangePassword"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" >
+        <action
+            android:id="@+id/action_fragmentChangePassword_to_fragmentProfileInfo"
+            app:destination="@id/fragmentProfileInfo" />
+    </fragment>
+    <activity
+        android:id="@+id/mainScreenActivity"
+        android:name="com.example.treker_fefu.MainScreenActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

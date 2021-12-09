@@ -21,7 +21,8 @@
     <string name="to_come_in">Войти</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="agree_rule">Нажимая на кнопку, вы соглашаетесь \nс политикой конфиденциальности и обработки персональных \n данных, а также принимаете пользовательское соглашение</string>
+    <string name="agree_rule"> \n \n Нажимая на кнопку, вы соглашаетесь \nс политикой конфиденциальности и обработки персональных
+        \n данных, а также принимаете пользовательское соглашение \n \n</string>
     <string name="gender">Пол</string>
     <string name="men">Мужской</string>
     <string name="woman">Женский</string>
