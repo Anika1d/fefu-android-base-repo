@@ -4,29 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/infoUserArrival"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/cardview_shadow_start_color">
 
-
-    <TextView
-        android:id="@+id/textSff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#E5E5E5"
-        android:text="  Декабрь 2002 года"
-        android:textColor="#808080"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/include_rV_arrival_full_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/include_rV_arrival_full_info"
         layout="@layout/recycle_arrival_full_info"
         android:layout_width="match_parent"
         android:layout_height="0sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSff" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="12sp"
+        app:backgroundTint="#4B09F3"
+        android:layout_marginBottom="12sp"
+        app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

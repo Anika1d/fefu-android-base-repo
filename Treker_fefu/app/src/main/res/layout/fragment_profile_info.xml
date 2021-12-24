@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:id="@+id/fragmentProfileInfo"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentProfileInfo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".FragmentProfileInfo">
-<include
-    android:id="@+id/include_toolbar_pr"
-    layout="@layout/toolbar"/>
 
     <include
-        android:id="@+id/include_toolbar"
+        android:id="@+id/include_toolbar_pr"
         layout="@layout/toolbar" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="12sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLog"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24sp"
         android:layout_marginBottom="1sp"
         android:hint="@string/login"
         app:layout_constraintBottom_toTopOf="@+id/textInputNick"
-        app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/include_toolbar_pr"
         app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -42,10 +46,12 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputNick"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="1sp"
         android:hint="@string/nickname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/textInputLog">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -64,11 +70,10 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16sp"
         android:layout_marginBottom="144sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
         android:text="Изменить пароль"
         app:layout_constraintBottom_toTopOf="@+id/button_out"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputNick"
         app:layout_constraintVertical_bias="0.029" />
     <!--

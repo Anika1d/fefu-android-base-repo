@@ -26,7 +26,6 @@ class FragmentStaticData : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentStaticDataBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -34,16 +33,23 @@ class FragmentStaticData : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = ScreenAdapter(this)
-        viewPager = binding.pager
-        viewPager.adapter = adapter
-        tabLayout = view.findViewById(R.id.tabs)
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = tabsNames[position]
-        }.attach()
-
+        if (savedInstanceState == null) {
+            adapter = ScreenAdapter(this)
+            viewPager = binding.pager
+            viewPager.adapter = adapter
+            tabLayout = view.findViewById(R.id.tabs)
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = tabsNames[position]
+            }.attach()
+        }
 
     }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = FragmentStaticData()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

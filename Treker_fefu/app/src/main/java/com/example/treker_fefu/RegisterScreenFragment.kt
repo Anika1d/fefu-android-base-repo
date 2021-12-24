@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.appcompat.widget.Toolbar
@@ -69,9 +68,21 @@ class RegisterScreenFragment : Fragment() {
         binding.includeToolbar.myToolbar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_RegisterScreenFragment_to_MainScreenFragment)
         }
-
-
+        binding.checkBox.setOnClickListener {
+            binding.checkBox2.setChecked(false)
+            binding.checkBox3.setChecked(false)
+        }
+        binding.checkBox2.setOnClickListener {
+            binding.checkBox.setChecked(false)
+            binding.checkBox3.setChecked(false)
+        }
+        binding.checkBox3.setOnClickListener {
+            binding.checkBox.setChecked(false)
+            binding.checkBox2.setChecked(false)
+        }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

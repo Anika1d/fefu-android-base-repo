@@ -6,19 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/include_toolbar"
-        layout="@layout/toolbar"
-        app:layout_constraintBottom_toTopOf="@+id/arrival_distance"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="\@Anikad"
+        android:textColor="@color/purple_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
         android:id="@+id/arrival_distance"
         android:layout_width="wrap_content"
         android:layout_height='wrap_content'
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="28dp"
         android:ellipsize="end"
         android:lines="1"
         android:text="14.32 км"
@@ -26,52 +38,81 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_toolbar" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/nick_name" />
 
     <TextView
-        android:id="@+id/arrival_ago_time"
+        android:id="@+id/arrival_time_ago"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginEnd="334sp"
+        android:layout_marginTop="20dp"
         android:text="time ago"
-        android:textColor="#ACACACAC"
+        android:textColor="#757575"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/arrival_distance" />
 
     <TextView
-        android:id="@+id/time_d"
+        android:id="@+id/arrival_little_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="24dp"
         android:text="1 ч 42 мин"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/arrival_ago_time" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/arrival_time_ago" />
 
     <TextView
         android:id="@+id/time_start_and_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24sp"
-        android:layout_marginBottom="500sp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="36dp"
         android:text="Старт 14:49   |   Финиш 16:31"
         android:textColor="@color/black"
         android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/arrival_little_time" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="12sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputComment"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48sp"
+        android:layout_marginTop="60sp"
+        android:layout_marginEnd="60sp"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_d" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/time_start_and_finish"
+        app:layout_constraintVertical_bias="0.129"
+        tools:ignore="MissingConstraints">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/comment_edit_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Комментарий"
+            android:inputType="textMultiLine" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

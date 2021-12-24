@@ -2,25 +2,38 @@ package com.example.treker_fefu.model
 
 
 import com.github.javafaker.Faker
+import java.time.LocalDate
 import java.util.*
-typealias ArrivalsListener=(arrivals:List<Arrival>)->Unit
+import kotlin.Comparator
+
+
+typealias ArrivalsListener = (arrivals: List<Arrival>) -> Unit
+
 class ArrivalService {
-    private  var arrivals= mutableListOf<Arrival>()
-    private  var listeners= mutableListOf<ArrivalsListener>()
-  init {
+    private var arrivals = mutableListOf<Arrival>()
+    private var listeners = mutableListOf<ArrivalsListener>()
+
+    init {
         val faker = Faker.instance()
-       arrivals = (5..25).map {
+
+
+        arrivals = (5..25).map {
+//            val date = LocalDate.of(
+//                faker.number().numberBetween(2000, 2020),
+//                faker.number().numberBetween(1, 12),
+//                faker.number().numberBetween(1, 31)
+//            )
+
             Arrival(
                 id = it.toLong(),
                 name_arrival = faker.job().title(),
-             //   nick_user = faker.name().username(),
-                distance = faker.number().numberBetween(1, 2000).toLong(), // в метрах
-                  full_info_date = Triple(
-               faker.number().numberBetween(1, 60),
-                    faker.number().numberBetween(1, 60),
-                    faker.number().numberBetween(1, 24)
-                ),
-                time_start = Triple(
+                //   nick_user = faker.name().username(),
+                distance = faker.number().numberBetween(1, 3500).toLong(), // в метрах
+                full_info_date = Triple(
+                    faker.number().numberBetween(1, 31),
+                    faker.number().numberBetween(1, 12),
+                    faker.number().numberBetween(2000, 2020),
+                ), time_start = Triple(
                     faker.number().numberBetween(1, 60),
                     faker.number().numberBetween(1, 60),
                     faker.number().numberBetween(1, 24)
@@ -29,41 +42,50 @@ class ArrivalService {
                     faker.number().numberBetween(1, 60),
                     faker.number().numberBetween(1, 60),
                     faker.number().numberBetween(1, 24)
-                )
-            ,
-                //comment = faker.lorem().paragraph()
+                ),
+                comment = faker.lorem().paragraph(2),
+                nick_user = faker.name().username()
             )
         }.toMutableList()
+//p0, p1 -> if (p0.full_info_date.isAfter(p1?.full_info_date)) 1 else 0
+        val CompareObjects = object : Comparator<Arrival> {
+
+            override fun compare(a: Arrival, b: Arrival): Int = when {
+                a.full_info_date.third != b.full_info_date.third -> a.full_info_date.third - b.full_info_date.third
+                a.full_info_date.second != b.full_info_date.second -> a.full_info_date.second - b.full_info_date.second
+                else -> a.full_info_date.first - b.full_info_date.first
+            }
+        }
+        arrivals.sortedWith(CompareObjects)
+
+
     }
 
-    fun getArrival():List<Arrival> {
+
+    fun getArrival(): List<Arrival> {
         return arrivals
     }
 
-    fun removeArrival(arrival: Arrival){
-        val indexToDelete=arrivals.indexOfFirst { it.id==arrival.id  }
-        if (indexToDelete!=-1){
+    fun removeArrival(arrival: Arrival) {
+        val indexToDelete = arrivals.indexOfFirst { it.id == arrival.id }
+        if (indexToDelete != -1) {
             arrivals.removeAt(indexToDelete)
+            notifyChanges()
         }
     }
-    fun moveArrival(arrival: Arrival,moveBy:Int){
-        val oldIndex= arrivals.indexOfFirst{ it.id==arrival.id}
-        if (oldIndex==-1) return
-        val newIndex=oldIndex+moveBy
-        if (newIndex<0 || newIndex>=arrivals.size) return
-        Collections.swap(arrivals,oldIndex,newIndex)
-        notifyChanges()
 
-    }
-    fun addListener(listener:ArrivalsListener){
+
+    fun addListener(listener: ArrivalsListener) {
         listeners.add(listener)
         listener.invoke(arrivals)
     }
-    fun removeListener(listener:ArrivalsListener){
+
+    fun removeListener(listener: ArrivalsListener) {
         listeners.remove(listener)
     }
-    private  fun notifyChanges(){
-         listeners.forEach{it.invoke(arrivals)}
+
+    private fun notifyChanges() {
+        listeners.forEach { it.invoke(arrivals) }
     }
 
 }

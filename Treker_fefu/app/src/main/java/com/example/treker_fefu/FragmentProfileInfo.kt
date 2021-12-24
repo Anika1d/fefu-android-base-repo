@@ -1,5 +1,6 @@
 package com.example.treker_fefu
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -29,18 +30,27 @@ class FragmentProfileInfo : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        binding.includeToolbar.myToolbar.title = "Профиль"
-  binding.changePassword.setOnClickListener {
-          findNavController().navigate(R.id.action_fragmentProfileInfo_to_fragmentChangePassword)
+        fun makeCurrentFragment(fragment: Fragment) {
+            parentFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainerView, fragment)
+                commit()
+            }
+        }
+        binding.includeToolbarPr.myToolbar.title = "Профиль"
+        binding.changePassword.setOnClickListener {
+            makeCurrentFragment(FragmentChangePassword())
         }
         binding.buttonOut.setOnClickListener {
-      findNavController().navigate(R.id.action_fragmentProfileInfo_to_mainScreenActivity)
+            val intent = Intent(activity, MainScreenActivity::class.java)
+            startActivity(intent)
         }
 
     }
 
+    companion object {
+        @JvmStatic
+        fun newInstance() = FragmentStaticData()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -14,11 +14,7 @@
         android:id="@+id/userInfoFragment"
         android:name="com.example.treker_fefu.UserInfoFragment"
         android:label="fragment_user_info"
-        tools:layout="@layout/fragment_user_info" >
-        <action
-            android:id="@+id/action_userInfoFragment_to_fragmentFull_InfoItemArrival"
-            app:destination="@id/fragmentFull_InfoItemArrival" />
-    </fragment>
+        tools:layout="@layout/fragment_user_info" />
     <fragment
         android:id="@+id/fragmentStaticData"
         android:name="com.example.treker_fefu.FragmentStaticData"
@@ -30,11 +26,10 @@
         <action
             android:id="@+id/action_fragmentStaticData2_to_userInfoFragment"
             app:destination="@id/userInfoFragment" />
+        <action
+            android:id="@+id/action_fragmentStaticData_to_fragmentFull_InfoItemArrival"
+            app:destination="@id/fragmentFull_InfoItemArrival" />
     </fragment>
-    <fragment
-        android:id="@+id/fragmentFull_InfoItemArrival"
-        android:name="com.example.treker_fefu.FragmentFull_InfoItemArrival"
-        android:label="FragmentFull_InfoItemArrival" />
     <fragment
         android:id="@+id/fragmentProfileInfo"
         android:name="com.example.treker_fefu.FragmentProfileInfo"
@@ -61,4 +56,15 @@
         android:name="com.example.treker_fefu.MainScreenActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/fragmentFull_InfoItemArrival"
+        android:name="com.example.treker_fefu.FragmentFull_InfoItemArrival"
+        android:label="FragmentFull_InfoItemArrival" >
+        <action
+            android:id="@+id/action_fragmentFull_InfoItemArrival_to_friendsFragment"
+            app:destination="@id/friendsFragment" />
+        <action
+            android:id="@+id/action_fragmentFull_InfoItemArrival_to_userInfoFragment"
+            app:destination="@id/userInfoFragment" />
+    </fragment>
 </navigation>
