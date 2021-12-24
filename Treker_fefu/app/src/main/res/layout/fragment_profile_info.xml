@@ -85,11 +85,12 @@
         android:layout_width="378sp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16sp"
-        android:background="#B00020"
         android:text="Выйти"
         android:textSize="15sp"
+        app:backgroundTint="#B00020"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent" />
 
 
