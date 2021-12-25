@@ -1,4 +1,4 @@
-package com.example.treker_fefu
+package com.example.treker_fefu.mainscreens.activityscreens
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

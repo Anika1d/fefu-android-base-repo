@@ -1,9 +1,7 @@
-package com.example.treker_fefu.model
+package com.example.treker_fefu.model.arrival
 
 
 import com.github.javafaker.Faker
-import java.time.LocalDate
-import java.util.*
 import kotlin.Comparator
 
 
@@ -18,16 +16,9 @@ class ArrivalService {
 
 
         arrivals = (5..25).map {
-//            val date = LocalDate.of(
-//                faker.number().numberBetween(2000, 2020),
-//                faker.number().numberBetween(1, 12),
-//                faker.number().numberBetween(1, 31)
-//            )
-
             Arrival(
                 id = it.toLong(),
                 name_arrival = faker.job().title(),
-                //   nick_user = faker.name().username(),
                 distance = faker.number().numberBetween(1, 3500).toLong(), // в метрах
                 full_info_date = Triple(
                     faker.number().numberBetween(1, 31),
@@ -47,10 +38,8 @@ class ArrivalService {
                 nick_user = faker.name().username()
             )
         }.toMutableList()
-//p0, p1 -> if (p0.full_info_date.isAfter(p1?.full_info_date)) 1 else 0
-        val CompareObjects = object : Comparator<Arrival> {
-
-            override fun compare(a: Arrival, b: Arrival): Int = when {
+        val CompareObjects = Comparator<Arrival> { a, b ->
+            when {
                 a.full_info_date.third != b.full_info_date.third -> a.full_info_date.third - b.full_info_date.third
                 a.full_info_date.second != b.full_info_date.second -> a.full_info_date.second - b.full_info_date.second
                 else -> a.full_info_date.first - b.full_info_date.first
@@ -62,9 +51,6 @@ class ArrivalService {
     }
 
 
-    fun getArrival(): List<Arrival> {
-        return arrivals
-    }
 
     fun removeArrival(arrival: Arrival) {
         val indexToDelete = arrivals.indexOfFirst { it.id == arrival.id }

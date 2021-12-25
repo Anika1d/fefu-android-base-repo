@@ -1,4 +1,4 @@
-package com.example.treker_fefu
+package com.example.treker_fefu.infoscreens.fragmentscreens
 
 import android.content.Intent
 import android.graphics.Color
@@ -7,15 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentFriendsBinding
-import com.example.treker_fefu.model.Arrival
-import com.example.treker_fefu.model.ArrivalService
-import com.example.treker_fefu.model.ArrivalsListener
-import java.io.Console
+import com.example.treker_fefu.mapscreens.activityscreens.MapsActivity
+import com.example.treker_fefu.model.arrival.Arrival
+import com.example.treker_fefu.model.arrival.ArrivalService
+import com.example.treker_fefu.model.arrival.ArrivalsListener
+import com.example.treker_fefu.model.arrival.AdapterArrival
+import com.example.treker_fefu.model.arrival.ArrivalActionListener
 import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
@@ -23,7 +24,7 @@ private const val ARG_PARAM2 = "param2"
 
 class FriendsFragment : Fragment() {
     private var _binding: FragmentFriendsBinding? = null
-    val arrivalService = ArrivalService()
+    private val arrivalService = ArrivalService()
     private val adapter = AdapterArrival(
         object : ArrivalActionListener {
             override fun onArrivalDetails(arrival: Arrival) {
@@ -93,15 +94,4 @@ class FriendsFragment : Fragment() {
         adapter.arrivals = it as ArrayList<Arrival>
     }
 
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

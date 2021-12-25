@@ -5,7 +5,7 @@
     android:id="@+id/fragmentProfileInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentProfileInfo">
+    tools:context=".infoscreens.fragmentscreens.FragmentProfileInfo">
 
     <include
         android:id="@+id/include_toolbar_pr"

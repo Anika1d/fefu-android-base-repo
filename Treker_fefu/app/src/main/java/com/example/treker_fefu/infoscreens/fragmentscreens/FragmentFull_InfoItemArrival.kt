@@ -1,4 +1,4 @@
-package com.example.treker_fefu
+package com.example.treker_fefu.infoscreens.fragmentscreens
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -8,23 +8,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.marginBottom
-import androidx.navigation.fragment.findNavController
+import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentFullInfoItemArrivalBinding
-import com.example.treker_fefu.model.Arrival
-import com.example.treker_fefu.model.ArrivalService
-import com.example.treker_fefu.model.ArrivalsListener
-import java.time.format.DateTimeFormatter
+import com.example.treker_fefu.model.arrival.Arrival
+import com.example.treker_fefu.model.arrival.ArrivalService
+import com.example.treker_fefu.model.arrival.ArrivalsListener
+import com.example.treker_fefu.model.arrival.AdapterArrival
+import com.example.treker_fefu.model.arrival.ArrivalActionListener
 import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class FragmentFull_InfoItemArrival(arrival: Arrival, WhatParentFragment: String) : Fragment() {
+class FragmentFull_InfoItemArrival(private var arrival: Arrival, WhatParentFragment: String) :
+    Fragment() {
     private var _binding: FragmentFullInfoItemArrivalBinding? = null
     private val binding get() = _binding!!
     private var tagParentFragment = WhatParentFragment
-    private var arrival = arrival
 
     private var param1: String? = null
     private var param2: String? = null
@@ -46,7 +46,7 @@ class FragmentFull_InfoItemArrival(arrival: Arrival, WhatParentFragment: String)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFullInfoItemArrivalBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -90,22 +90,22 @@ class FragmentFull_InfoItemArrival(arrival: Arrival, WhatParentFragment: String)
 
             when {
                 timeH == 11 -> arrivalLittleTime.text = "$timeH часов"
-                timeH == 0 -> arrivalLittleTime.text =""
+                timeH == 0 -> arrivalLittleTime.text = ""
                 timeH % 10 == 1 -> arrivalLittleTime.text = "$timeH час"
-                timeH< 5 -> arrivalLittleTime.text = "$timeH часа"
+                timeH < 5 -> arrivalLittleTime.text = "$timeH часа"
                 timeH < 21 -> arrivalLittleTime.text = "$timeH часов"
                 timeH % 10 < 5 -> arrivalLittleTime.text = "$timeH часа"
                 else -> arrivalLittleTime.text = "$timeH часов"
             }
 
             when {
-                timeM  == 11 -> arrivalLittleTime.text =
+                timeM == 11 -> arrivalLittleTime.text =
                     "${arrivalLittleTime.text} $timeM минут"
                 timeM == 0 -> arrivalLittleTime.text =
                     "${arrivalLittleTime.text}"
                 timeM % 10 == 1 -> arrivalLittleTime.text =
                     "${arrivalLittleTime.text} $timeM минута"
-                timeM< 5 -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минуты"
+                timeM < 5 -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минуты"
                 timeM < 21 -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минут"
                 timeM % 10 < 5 -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минуты"
                 else -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минут"

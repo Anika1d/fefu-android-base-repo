@@ -1,4 +1,4 @@
-package com.example.treker_fefu
+package com.example.treker_fefu.infoscreens.fragmentscreens
 
 import android.content.Intent
 import android.graphics.Color
@@ -7,17 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.makeText
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentUserInfoBinding
-import com.example.treker_fefu.model.Arrival
-import com.example.treker_fefu.model.ArrivalService
-import com.example.treker_fefu.model.ArrivalsListener
-import com.google.android.material.snackbar.Snackbar
+import com.example.treker_fefu.mapscreens.activityscreens.MapsActivity
+import com.example.treker_fefu.model.arrival.Arrival
+import com.example.treker_fefu.model.arrival.ArrivalService
+import com.example.treker_fefu.model.arrival.ArrivalsListener
+import com.example.treker_fefu.model.arrival.AdapterArrival
+import com.example.treker_fefu.model.arrival.ArrivalActionListener
 import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
@@ -36,7 +35,7 @@ class UserInfoFragment : Fragment() {
                     hide(visibleFragment)
                 }
                 add(
-                        R.id.fragmentContainerView,
+                    R.id.fragmentContainerView,
                         FragmentFull_InfoItemArrival(arrival, "user_data"),
                         "user_arrival_details"
                     )

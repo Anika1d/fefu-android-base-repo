@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MainScreenFragment"
-        android:name="com.example.treker_fefu.MainScreenFragment"
+        android:name="com.example.treker_fefu.mainscreens.fragmentscreens.MainScreenFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_main_screen">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/RegisterScreenFragment"
-        android:name="com.example.treker_fefu.RegisterScreenFragment"
+        android:name="com.example.treker_fefu.mainscreens.fragmentscreens.RegisterScreenFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_register_screen">
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/siginScreenFragment"
-        android:name="com.example.treker_fefu.SiginScreenFragment"
+        android:name="com.example.treker_fefu.mainscreens.fragmentscreens.SiginScreenFragment"
         android:label="fragment_sigin_screen"
         tools:layout="@layout/fragment_sigin_screen" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <activity
         android:id="@+id/activity_info_treker"
-        android:name="com.example.treker_fefu.ActivityInfoTreker"
+        android:name="com.example.treker_fefu.infoscreens.activityscreens.ActivityInfoTreker"
         android:label="activity_info_treker"
         tools:layout="@layout/activity_info_treker" />
 </navigation>

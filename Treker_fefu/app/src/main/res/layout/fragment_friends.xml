@@ -5,7 +5,7 @@
     android:id="@+id/infoFriendsArrival"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FriendsFragment"
+    tools:context=".infoscreens.fragmentscreens.FriendsFragment"
     android:background="@color/cardview_shadow_start_color">
 
 

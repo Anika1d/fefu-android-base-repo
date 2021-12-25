@@ -5,7 +5,7 @@
     android:id="@+id/fr_src"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityInfoTreker">
+    tools:context=".infoscreens.activityscreens.ActivityInfoTreker">
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"

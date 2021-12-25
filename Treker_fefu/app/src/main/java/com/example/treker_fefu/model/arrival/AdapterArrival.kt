@@ -1,22 +1,16 @@
-package com.example.treker_fefu
+package com.example.treker_fefu.model.arrival
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.treker_fefu.databinding.ItemArrivalBinding
-import com.example.treker_fefu.model.Arrival
-import com.example.treker_fefu.model.ArrivalService
-import com.github.javafaker.Faker
-import java.time.format.DateTimeFormatter
 import java.util.*
 
-////  val formattedDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+
 class AdapterArrival(
-    private val actionListener: ArrivalActionListener, var tagParentFragment: String
+    private val actionListener: ArrivalActionListener, private var tagParentFragment: String
 ) : RecyclerView.Adapter<AdapterArrival.ArrivalViewHolder>(), View.OnClickListener {
     var arrivals = ArrayList<Arrival>()
         @SuppressLint("NotifyDataSetChanged")
@@ -36,13 +30,12 @@ class AdapterArrival(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArrivalViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemArrivalBinding.inflate(inflater, parent, false);
+        val binding = ItemArrivalBinding.inflate(inflater, parent, false)
         binding.root.setOnClickListener(this)
         return ArrivalViewHolder(binding)
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ArrivalViewHolder, position: Int) {
         val arrival = arrivals[position]
@@ -102,28 +95,14 @@ class AdapterArrival(
 
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    /*fun addArrivals(arrival: Arrival){
-        arrivals.add(arrival)
-        notifyDataSetChanged()
-    }*/
     class ArrivalViewHolder(
         val binding: ItemArrivalBinding
     ) : RecyclerView.ViewHolder(binding.root)
-
-    companion object {
-        private const val ID_MOVE_UP = 1
-        private const val ID_MOVE_DOWN = 2
-        private const val ID_REMOVE = 3
-    }
 }
 
 interface ArrivalActionListener {
     fun onArrivalDetails(arrival: Arrival) {
 
-    }
-
-    fun moveArrival(arrival: Arrival, moveBy: Int) {
     }
 
     fun onArrivalDelete(arrival: Arrival) {

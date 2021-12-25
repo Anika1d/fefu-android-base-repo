@@ -1,15 +1,12 @@
-package com.example.treker_fefu
+package com.example.treker_fefu.infoscreens.activityscreens
 
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
+import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.ActivityInfoTrekerBinding
-import com.mifmif.common.regex.Main
+import com.example.treker_fefu.infoscreens.fragmentscreens.FragmentProfileInfo
+import com.example.treker_fefu.infoscreens.fragmentscreens.FragmentStaticData
 
 class ActivityInfoTreker : AppCompatActivity() {
     private lateinit var binding: ActivityInfoTrekerBinding
@@ -31,8 +28,6 @@ class ActivityInfoTreker : AppCompatActivity() {
                 commit()
             }
         }
-
-
 
         binding = ActivityInfoTrekerBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -57,16 +52,4 @@ class ActivityInfoTreker : AppCompatActivity() {
 
 
     }
-
-    fun outPerson() {
-        val intentt = Intent(this, MainScreenActivity::class.java)
-        startActivity(intentt)
-    }
-
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return super.onCreateView(name, context, attrs)
-
-    }
-
-
 }

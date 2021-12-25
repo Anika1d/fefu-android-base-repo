@@ -5,7 +5,7 @@
     android:id="@+id/staticData"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentStaticData">
+    tools:context=".infoscreens.fragmentscreens.FragmentStaticData">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"

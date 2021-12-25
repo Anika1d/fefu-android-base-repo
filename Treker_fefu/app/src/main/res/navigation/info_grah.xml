@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/friendsFragment"
-        android:name="com.example.treker_fefu.FriendsFragment"
+        android:name="com.example.treker_fefu.infoscreens.fragmentscreens.FriendsFragment"
         android:label="fragment_friends"
         tools:layout="@layout/fragment_friends" />
     <fragment
         android:id="@+id/userInfoFragment"
-        android:name="com.example.treker_fefu.UserInfoFragment"
+        android:name="com.example.treker_fefu.infoscreens.fragmentscreens.UserInfoFragment"
         android:label="fragment_user_info"
         tools:layout="@layout/fragment_user_info" />
     <fragment
         android:id="@+id/fragmentStaticData"
-        android:name="com.example.treker_fefu.FragmentStaticData"
+        android:name="com.example.treker_fefu.infoscreens.fragmentscreens.FragmentStaticData"
         android:label="fragment_static_data"
         tools:layout="@layout/fragment_static_data" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentProfileInfo"
-        android:name="com.example.treker_fefu.FragmentProfileInfo"
+        android:name="com.example.treker_fefu.infoscreens.fragmentscreens.FragmentProfileInfo"
         android:label="fragment_profile_info"
         tools:layout="@layout/fragment_profile_info" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentChangePassword"
-        android:name="com.example.treker_fefu.FragmentChangePassword"
+        android:name="com.example.treker_fefu.infoscreens.fragmentscreens.FragmentChangePassword"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" >
         <action
@@ -53,12 +53,12 @@
     </fragment>
     <activity
         android:id="@+id/mainScreenActivity"
-        android:name="com.example.treker_fefu.MainScreenActivity"
+        android:name="com.example.treker_fefu.mainscreens.activityscreens.MainScreenActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/fragmentFull_InfoItemArrival"
-        android:name="com.example.treker_fefu.FragmentFull_InfoItemArrival"
+        android:name="com.example.treker_fefu.infoscreens.fragmentscreens.FragmentFull_InfoItemArrival"
         android:label="FragmentFull_InfoItemArrival" >
         <action
             android:id="@+id/action_fragmentFull_InfoItemArrival_to_friendsFragment"
