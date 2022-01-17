@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Treker_fefu</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+    <!-- Welcome Activity -->
+    <string name="rider_welcome">rider_x1</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="have_account">Уже есть аккаунт?</string>
+    <string name="welcome_title_big">Пожалуй, лучший фитнес \nтрекер в ДВФУ</string>
+    <string name="welcome_title_little">Созданный студентами 2-го курса</string>
+    <!-- Registration Fragment -->
+    <string name="registration">Регистрация</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="nickname">Имя или никнейм</string>
+    <string name="password_copy">Подвердите пароль</string>
+    <!-- Entrance  Fragment -->
+    <string name="to_come_in">Войти</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="agree_rule"> \n \n Нажимая на кнопку, вы соглашаетесь \nс политикой конфиденциальности и обработки персональных
+        \n данных, а также принимаете пользовательское соглашение \n \n</string>
+    <string name="gender">Пол</string>
+    <string name="men">Мужской</string>
+    <string name="woman">Женский</string>
+    <string name="transformer">Трансформер</string>
+    <!-- Treker info Activity -->
+    <string name="Active">Активность</string>
+    <string name="my_static">Моя</string>
+    <string name="st_profile">Активность</string>
+    <string name="friends_static">Друзей</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_treker_data">Activity_treker_data</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Профиль</string>
+    <string name="title_activity_run">RunActivity</string>
+    <string name="next">Next</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>

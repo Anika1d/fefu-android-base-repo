@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/trash"
+        android:icon="@drawable/ic_trash_can"
+        android:title="Удалить"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/repost"
+        android:icon="@drawable/ic_repost_image"
+        android:title="Поделиться"
+        app:showAsAction="ifRoom" />
+</menu>
