@@ -10,27 +10,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentFullInfoItemArrivalBinding
-import com.example.treker_fefu.model.arrival.Arrival
-import com.example.treker_fefu.model.arrival.ArrivalService
-import com.example.treker_fefu.model.arrival.ArrivalsListener
-import com.example.treker_fefu.model.arrival.AdapterArrival
-import com.example.treker_fefu.model.arrival.ArrivalActionListener
+import com.example.treker_fefu.model.arrival.*
+import com.example.treker_fefu.room.math.toDateSeparator
 import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class FragmentFull_InfoItemArrival(private var arrival: Arrival, WhatParentFragment: String) :
+class FragmentFull_InfoItemArrival(
+    private var arrival: ListArrival.Arrival,
+    WhatParentFragment: String,
+) :
     Fragment() {
     private var _binding: FragmentFullInfoItemArrivalBinding? = null
     private val binding get() = _binding!!
     private var tagParentFragment = WhatParentFragment
-
+    private val arrivalService=ArrivalService()
     private var param1: String? = null
     private var param2: String? = null
 
-
-    private val arrivalService = ArrivalService()
     private var adapter = AdapterArrival(object : ArrivalActionListener {
     }, tagParentFragment)
 
@@ -45,7 +43,7 @@ class FragmentFull_InfoItemArrival(private var arrival: Arrival, WhatParentFragm
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFullInfoItemArrivalBinding.inflate(inflater, container, false)
         return binding.root
@@ -54,7 +52,6 @@ class FragmentFull_InfoItemArrival(private var arrival: Arrival, WhatParentFragm
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         fun BackToScreenHome() {
             parentFragmentManager.beginTransaction().apply {
@@ -65,76 +62,34 @@ class FragmentFull_InfoItemArrival(private var arrival: Arrival, WhatParentFragm
                 commit()
             }
         }
-
-        fun numberLessTеn(string: String): String {
-            return if (string.toInt() < 10) {
-                "0$string"
-            } else string
-        }
         binding.toolbar.title = arrival.name_arrival
         with(binding) {
-
-
-            if (arrival.distance > 1000) {
-                val tmp_distance: Double = arrival.distance.toDouble() / 1000
-                arrivalDistance.text = "$tmp_distance  км"
-            } else {
-                arrivalDistance.text = "${arrival.distance}  м"
-
-            }
-            var timeH = arrival.time_finish.third - arrival.time_start.third
-            var timeM = arrival.time_finish.second - arrival.time_start.second
-
-            if (timeH < 0) timeH += 24
-            if (timeM < 0) timeM += 60
-
-            when {
-                timeH == 11 -> arrivalLittleTime.text = "$timeH часов"
-                timeH == 0 -> arrivalLittleTime.text = ""
-                timeH % 10 == 1 -> arrivalLittleTime.text = "$timeH час"
-                timeH < 5 -> arrivalLittleTime.text = "$timeH часа"
-                timeH < 21 -> arrivalLittleTime.text = "$timeH часов"
-                timeH % 10 < 5 -> arrivalLittleTime.text = "$timeH часа"
-                else -> arrivalLittleTime.text = "$timeH часов"
-            }
-
-            when {
-                timeM == 11 -> arrivalLittleTime.text =
-                    "${arrivalLittleTime.text} $timeM минут"
-                timeM == 0 -> arrivalLittleTime.text =
-                    "${arrivalLittleTime.text}"
-                timeM % 10 == 1 -> arrivalLittleTime.text =
-                    "${arrivalLittleTime.text} $timeM минута"
-                timeM < 5 -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минуты"
-                timeM < 21 -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минут"
-                timeM % 10 < 5 -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минуты"
-                else -> arrivalLittleTime.text = "${arrivalLittleTime.text} $timeM минут"
-            }
-
+            arrivalDistance.text=arrival.distance
             if (tagParentFragment == "user_data") nickName.text = ""
             else {
                 commentEditInput.apply {
                     setTextColor(Color.GRAY)
                     setBackgroundColor(Color.LTGRAY)
-                    setText(arrival.comment)
+                    //   setText(arrival.comment)
+                    setText("Комментарий")
                     isEnabled = false
                     isCursorVisible = false
                     isFocusable = false
                     isClickable = false
 
                 }
-                nickName.text = "@${arrival.nick_user}"
+                nickName.text = "@${arrival.nickname}"
             }
-            arrivalTimeAgo.text =
-                numberLessTеn(arrival.full_info_date.first.toString()) + '.' +
-                        numberLessTеn(arrival.full_info_date.second.toString()) + '.' +
-                        arrival.full_info_date.third.toString()
+            arrivalTimeAgo.text=arrival.date
             timeStartAndFinish.text =
-                "Старт ${arrival.time_start.third}:${arrival.time_start.second} |  Финиш ${arrival.time_finish.third}:${arrival.time_start.second}"
+                "Старт ${arrival.time_start} |  Финиш ${arrival.time_finish}"
+
             toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
             toolbar.setNavigationOnClickListener {
                 BackToScreenHome()
             }
+
+
             if (tagParentFragment == "user_data") {
                 toolbar.inflateMenu(R.menu.toolbar_item_menu)
                 toolbar.menu.findItem(R.id.trash).setOnMenuItemClickListener {
@@ -149,9 +104,7 @@ class FragmentFull_InfoItemArrival(private var arrival: Arrival, WhatParentFragm
                 }
             }
         }
-
         arrivalService.addListener(arrivalListener)
-
     }
 
 
@@ -162,7 +115,6 @@ class FragmentFull_InfoItemArrival(private var arrival: Arrival, WhatParentFragm
     }
 
     private val arrivalListener: ArrivalsListener = {
-        adapter.arrivals = it as ArrayList<Arrival>
+        adapter.submitList(it as ArrayList<ListArrival>)
     }
-
 }

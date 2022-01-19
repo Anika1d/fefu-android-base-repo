@@ -1,3 +1,4 @@
+
 package com.example.treker_fefu.infoscreens.fragmentscreens
 
 import android.content.Intent
@@ -9,14 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.treker_fefu.App
 import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentUserInfoBinding
 import com.example.treker_fefu.mapscreens.activityscreens.MapsActivity
-import com.example.treker_fefu.model.arrival.Arrival
-import com.example.treker_fefu.model.arrival.ArrivalService
-import com.example.treker_fefu.model.arrival.ArrivalsListener
-import com.example.treker_fefu.model.arrival.AdapterArrival
-import com.example.treker_fefu.model.arrival.ArrivalActionListener
+import com.example.treker_fefu.model.arrival.*
+import com.example.treker_fefu.room.math.toDateSeparator
 import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
@@ -25,9 +24,9 @@ private const val ARG_PARAM2 = "param2"
 class UserInfoFragment : Fragment() {
     private var _binding: FragmentUserInfoBinding? = null
     private val binding get() = _binding!!
-    val arrivalService = ArrivalService()
+    private val arrivalService = ArrivalService()
     private var adapter = AdapterArrival(object : ArrivalActionListener {
-        override fun onArrivalDetails(arrival: Arrival) {
+        override fun onArrivalDetails(arrival: ListArrival.Arrival) {
             activity!!.supportFragmentManager.beginTransaction().apply {
                 val visibleFragment =
                     activity!!.supportFragmentManager.fragments.firstOrNull { !isHidden }
@@ -36,18 +35,13 @@ class UserInfoFragment : Fragment() {
                 }
                 add(
                     R.id.fragmentContainerView,
-                        FragmentFull_InfoItemArrival(arrival, "user_data"),
-                        "user_arrival_details"
-                    )
+                    FragmentFull_InfoItemArrival(arrival, "user_data"),
+                    "user_arrival_details"
+                )
                 commit()
             }
         }
-
-        override fun onArrivalDelete(arrival: Arrival) {
-            arrivalService.removeArrival(arrival)
-        }
     }, "user_data")
-
 
     private var param1: String? = null
     private var param2: String? = null
@@ -62,8 +56,8 @@ class UserInfoFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?,
+    ): View {
         _binding = FragmentUserInfoBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -73,15 +67,36 @@ class UserInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initArrival()
         binding.fab.setColorFilter(Color.WHITE)
-
         binding.fab.setOnClickListener {
             val intent = Intent(activity, MapsActivity::class.java)
             startActivity(intent)
         }
     }
 
-    private fun initArrival() {
+    private val arrivalListener: ArrivalsListener = {
+        adapter.submitList(it as ArrayList<ListArrival>)
+    }
 
+    private fun initArrival() {
+        App.INSTANCE.db.myActivityDao().getAll().observe(viewLifecycleOwner) { activitiesList ->
+            val activitiesMap = mutableMapOf<String, MutableList<ListArrival.Arrival>>()
+            activitiesList.forEach {
+                if (!activitiesMap.containsKey(it.time_finish.toDateSeparator())) {
+                    activitiesMap[it.time_finish.toDateSeparator()] = mutableListOf()
+                }
+
+                activitiesMap[it.time_finish.toDateSeparator()]?.add(it.toArrival())
+            }
+            val packedList = mutableListOf<ListArrival>()
+            activitiesMap.forEach { (dateSeparatorContent, myActivitiesList) ->
+                packedList.add(ListArrival.Date(dateSeparatorContent))
+                myActivitiesList.forEach {
+                    packedList.add(it)
+                }
+            }
+            adapter.submitList(packedList)
+            arrivalService.arrivals.addAll(adapter.currentList)
+        }
         val recyclerView: RecyclerView = binding.includeRVArrivalFullInfo.rVArrivalFullInfo
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = adapter
@@ -89,29 +104,9 @@ class UserInfoFragment : Fragment() {
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putAll(outState)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         arrivalService.removeListener(arrivalListener)
         _binding = null
-    }
-
-    private val arrivalListener: ArrivalsListener = {
-        adapter.arrivals = it as ArrayList<Arrival>
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

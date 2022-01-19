@@ -1,8 +1,10 @@
 package com.example.treker_fefu.mapscreens.activityscreens
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.example.treker_fefu.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
