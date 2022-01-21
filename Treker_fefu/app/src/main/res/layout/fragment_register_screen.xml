@@ -117,6 +117,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pass_edit_reg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:autofillHints='password'
@@ -139,6 +140,7 @@
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/pass_edit_reg_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:autofillHints='password'

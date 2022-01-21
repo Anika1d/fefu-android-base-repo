@@ -25,7 +25,7 @@
         android:text="@string/to_come_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/Input_register"
         app:layout_constraintVertical_bias="0.687" />
 
     <LinearLayout
@@ -71,6 +71,7 @@
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pass_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:autofillHints='password'
