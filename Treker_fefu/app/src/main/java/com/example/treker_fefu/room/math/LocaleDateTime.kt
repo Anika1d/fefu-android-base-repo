@@ -1,16 +1,12 @@
 package com.example.treker_fefu.room.math
 
 
-import android.text.format.DateUtils
-import com.google.android.gms.common.util.DataUtils
-import java.text.SimpleDateFormat
 import java.time.*
 import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 
 fun LocalDateTime.toDateSeparator(): String {
-
-    val date_time_ms = System.currentTimeMillis()
+    val curDateTime = LocalDateTime.now()
+    val duration= Duration.between(this,curDateTime)
     val months = mapOf(
         1 to "Январь",
         2 to "Февраль",
@@ -27,23 +23,24 @@ fun LocalDateTime.toDateSeparator(): String {
     )
 
     return when {
-        DateUtils.isToday(date_time_ms) -> "Сегодня"
-        DateUtils.isToday(date_time_ms.plus(DateUtils.DAY_IN_MILLIS)) -> "Вчера"
-        DateUtils.isToday(date_time_ms.plus(DateUtils.WEEK_IN_MILLIS)) -> "Неделю назад"
-        DateUtils.isToday(date_time_ms.plus(DateUtils.WEEK_IN_MILLIS * 4)) -> "Месяц назад"
+         duration.toHours()<24 -> "Сегодня"
+        duration.toHours() in 24..47 -> "Вчера"
+        duration.toHours() in 48..167 -> "Неделю назад"
+        duration.toHours() in 168..671 -> "Месяц назад"
         else -> "${months[monthValue]} $year года"
     }
 }
 
+
+
 fun LocalDateTime.toFinishDateOrTime(): String {
     val curDateTime = LocalDateTime.now()
-    val duration = Duration.between(this, curDateTime)
+    val duration= Duration.between(this,curDateTime)
 
     return when {
-        -duration.toHours() < 24 -> {
-            var time: String = "f"
-            time = if (duration.toHours().toString() != "0") {
-                "${-duration.toHours()} ч. назад"
+        -duration.toHours() <24 -> {
+            val time = if (duration.toHours().toString() != "0") {
+                "${duration.toHours()} ч. назад"
             } else {
                 "${duration.toMinutes()} мин. назад"
             }

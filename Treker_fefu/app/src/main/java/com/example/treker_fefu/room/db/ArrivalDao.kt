@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface ArrivalDao {
-    @Query("SELECT * FROM arrival_db ORDER BY id  DESC, time_finish  ASC ")
+    @Query("SELECT * FROM arrival_db ORDER BY time_finish  DESC ")
     fun getAll(): LiveData<List<ArrivalRoom>>
 
     @Query("SELECT * FROM arrival_db WHERE id=:id")
