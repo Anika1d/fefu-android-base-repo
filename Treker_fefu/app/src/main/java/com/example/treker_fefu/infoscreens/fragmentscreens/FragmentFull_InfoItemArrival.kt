@@ -11,26 +11,32 @@ import android.widget.Toast
 import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentFullInfoItemArrivalBinding
 import com.example.treker_fefu.model.arrival.*
-import com.example.treker_fefu.room.math.toDateSeparator
 import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
-class FragmentFull_InfoItemArrival(
-    private var arrival: ListArrival.Arrival,
-    WhatParentFragment: String,
-) :
+class FragmentFull_InfoItemArrival(arrival1: ListArrival.Arrival,  whatParentFragment: String) :
     Fragment() {
     private var _binding: FragmentFullInfoItemArrivalBinding? = null
     private val binding get() = _binding!!
-    private var tagParentFragment = WhatParentFragment
-    private val arrivalService=ArrivalService()
+    private val arrival=arrival1
+    private val tagParentFragment= whatParentFragment
+    private val arrivalService = ArrivalService()
     private var param1: String? = null
     private var param2: String? = null
-
     private var adapter = AdapterArrival(object : ArrivalActionListener {
     }, tagParentFragment)
+
+    companion object {
+        fun newInstance(
+            arrival: ListArrival.Arrival,
+            whatParentFragment: String
+        ): FragmentFull_InfoItemArrival {
+
+            return FragmentFull_InfoItemArrival(arrival,whatParentFragment)
+        }
+        const val tag = "arrival_info"
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +70,7 @@ class FragmentFull_InfoItemArrival(
         }
         binding.toolbar.title = arrival.name_arrival
         with(binding) {
-            arrivalDistance.text=arrival.distance
+            arrivalDistance.text = arrival.distance
             if (tagParentFragment == "user_data") nickName.text = ""
             else {
                 commentEditInput.apply {
@@ -80,7 +86,7 @@ class FragmentFull_InfoItemArrival(
                 }
                 nickName.text = "@${arrival.nickname}"
             }
-            arrivalTimeAgo.text=arrival.date
+            arrivalTimeAgo.text = arrival.date
             timeStartAndFinish.text =
                 "Старт ${arrival.time_start} |  Финиш ${arrival.time_finish}"
 

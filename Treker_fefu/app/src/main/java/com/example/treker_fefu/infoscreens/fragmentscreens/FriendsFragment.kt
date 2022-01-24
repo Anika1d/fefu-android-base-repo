@@ -30,8 +30,8 @@ class FriendsFragment : Fragment() {
                     }
                     add(
                         R.id.fragmentContainerView,
-                        FragmentFull_InfoItemArrival(arrival, "friends_data"),
-                        "friends_arrival_details"
+                        FragmentFull_InfoItemArrival.newInstance(arrival, "friends_data"),
+                        FragmentFull_InfoItemArrival.tag,
                     )
                     commit()
                 }

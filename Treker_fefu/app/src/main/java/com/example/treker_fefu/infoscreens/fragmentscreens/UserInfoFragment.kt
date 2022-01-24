@@ -27,6 +27,7 @@ class UserInfoFragment : Fragment() {
     private val arrivalService = ArrivalService()
     private var adapter = AdapterArrival(object : ArrivalActionListener {
         override fun onArrivalDetails(arrival: ListArrival.Arrival) {
+
             activity!!.supportFragmentManager.beginTransaction().apply {
                 val visibleFragment =
                     activity!!.supportFragmentManager.fragments.firstOrNull { !isHidden }
@@ -35,9 +36,10 @@ class UserInfoFragment : Fragment() {
                 }
                 add(
                     R.id.fragmentContainerView,
-                    FragmentFull_InfoItemArrival(arrival, "user_data"),
-                    "user_arrival_details"
+                    FragmentFull_InfoItemArrival.newInstance(arrival, "user_data"),
+                    FragmentFull_InfoItemArrival.tag,
                 )
+
                 commit()
             }
         }
