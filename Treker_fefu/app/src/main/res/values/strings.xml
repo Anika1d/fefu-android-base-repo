@@ -26,7 +26,7 @@
     <string name="gender">Пол</string>
     <string name="men">Мужской</string>
     <string name="woman">Женский</string>
-    <string name="transformer">Трансформер</string>
+    <string name="transformer">Другое</string>
     <!-- Treker info Activity -->
     <string name="Active">Активность</string>
     <string name="my_static">Моя</string>
