@@ -8,43 +8,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.treker_fefu.App
 import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentFullInfoItemArrivalBinding
 import com.example.treker_fefu.model.arrival.*
+import com.example.treker_fefu.room.math.toDateSeparator
 import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-class FragmentFull_InfoItemArrival(arrival1: ListArrival.Arrival,  whatParentFragment: String) :
+
+class FragmentFull_InfoItemArrival :
     Fragment() {
     private var _binding: FragmentFullInfoItemArrivalBinding? = null
     private val binding get() = _binding!!
-    private val arrival=arrival1
-    private val tagParentFragment= whatParentFragment
-    private val arrivalService = ArrivalService()
-    private var param1: String? = null
-    private var param2: String? = null
-    private var adapter = AdapterArrival(object : ArrivalActionListener {
-    }, tagParentFragment)
-
-    companion object {
-        fun newInstance(
-            arrival: ListArrival.Arrival,
-            whatParentFragment: String
-        ): FragmentFull_InfoItemArrival {
-
-            return FragmentFull_InfoItemArrival(arrival,whatParentFragment)
-        }
-        const val tag = "arrival_info"
-    }
-
+    lateinit var arrival_id: String
+    lateinit var arrival: ListArrival.Arrival
+    lateinit var tagParentFragment: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        val a = arguments?.getStringArrayList("myArg")
+        tagParentFragment = a?.get(1).toString()
+        arrival_id = a?.get(0).toString()
+
+    }
+
+    fun searchArrival() {
+        arrival = App.INSTANCE.db.myActivityDao().getById(arrival_id.toInt()).toArrival()
     }
 
     override fun onCreateView(
@@ -58,7 +49,7 @@ class FragmentFull_InfoItemArrival(arrival1: ListArrival.Arrival,  whatParentFra
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        searchArrival()
         fun BackToScreenHome() {
             parentFragmentManager.beginTransaction().apply {
                 val currentFragment =
@@ -99,7 +90,7 @@ class FragmentFull_InfoItemArrival(arrival1: ListArrival.Arrival,  whatParentFra
             if (tagParentFragment == "user_data") {
                 toolbar.inflateMenu(R.menu.toolbar_item_menu)
                 toolbar.menu.findItem(R.id.trash).setOnMenuItemClickListener {
-                    arrivalService.removeArrival(arrival)
+                   // arrivalService.removeArrival(arrival)
                     BackToScreenHome()
                     Toast.makeText(context, "Удалено", Toast.LENGTH_LONG).show()
                     true
@@ -110,17 +101,11 @@ class FragmentFull_InfoItemArrival(arrival1: ListArrival.Arrival,  whatParentFra
                 }
             }
         }
-        arrivalService.addListener(arrivalListener)
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        arrivalService.removeListener(arrivalListener)
         _binding = null
-    }
-
-    private val arrivalListener: ArrivalsListener = {
-        adapter.submitList(it as ArrayList<ListArrival>)
     }
 }

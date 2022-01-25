@@ -1,4 +1,3 @@
-
 package com.example.treker_fefu.infoscreens.fragmentscreens
 
 import android.content.Intent
@@ -8,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.treker_fefu.App
@@ -27,7 +27,16 @@ class UserInfoFragment : Fragment() {
     private val arrivalService = ArrivalService()
     private var adapter = AdapterArrival(object : ArrivalActionListener {
         override fun onArrivalDetails(arrival: ListArrival.Arrival) {
-
+            val id = arrival.id.toString()
+            val tgp = "user_data"
+            val arrayList = ArrayList<String>()
+            arrayList.add(id)
+            arrayList.add(tgp)
+            val bundle = Bundle()
+            bundle.putStringArrayList("myArg", arrayList)
+            val fr = FragmentFull_InfoItemArrival()
+            fr.arguments = bundle
+            bundle.putStringArrayList("myArg", arrayList)
             activity!!.supportFragmentManager.beginTransaction().apply {
                 val visibleFragment =
                     activity!!.supportFragmentManager.fragments.firstOrNull { !isHidden }
@@ -36,13 +45,12 @@ class UserInfoFragment : Fragment() {
                 }
                 add(
                     R.id.fragmentContainerView,
-                    FragmentFull_InfoItemArrival.newInstance(arrival, "user_data"),
-                    FragmentFull_InfoItemArrival.tag,
+                    fr,
+                    fr.tag,
                 )
-
-                commit()
-            }
+                commit()}
         }
+
     }, "user_data")
 
     private var param1: String? = null

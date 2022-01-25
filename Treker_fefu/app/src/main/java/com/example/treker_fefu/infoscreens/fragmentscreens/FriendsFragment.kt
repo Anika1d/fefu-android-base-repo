@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.add
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentFriendsBinding
 import com.example.treker_fefu.mapscreens.activityscreens.MapsActivity
 import com.example.treker_fefu.model.arrival.*
+import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -22,6 +24,15 @@ class FriendsFragment : Fragment() {
     private val adapter = AdapterArrival(
         object : ArrivalActionListener {
             override fun onArrivalDetails(arrival: ListArrival.Arrival) {
+                val id = arrival.id.toString()
+                val tgp = "friends_data"
+                val arrayList = ArrayList<String>()
+                arrayList.add(id)
+                arrayList.add(tgp)
+                val bundle = Bundle()
+                val fr = FragmentFull_InfoItemArrival()
+                fr.arguments = bundle
+                bundle.putStringArrayList("myArg", arrayList)
                 activity!!.supportFragmentManager.beginTransaction().apply {
                     val visibleFragment =
                         activity!!.supportFragmentManager.fragments.firstOrNull { !isHidden }
@@ -30,8 +41,8 @@ class FriendsFragment : Fragment() {
                     }
                     add(
                         R.id.fragmentContainerView,
-                        FragmentFull_InfoItemArrival.newInstance(arrival, "friends_data"),
-                        FragmentFull_InfoItemArrival.tag,
+                        fr,
+                        fr.tag,
                     )
                     commit()
                 }
@@ -82,7 +93,6 @@ class FriendsFragment : Fragment() {
 
         _binding = null
     }
-
 
 
 }
