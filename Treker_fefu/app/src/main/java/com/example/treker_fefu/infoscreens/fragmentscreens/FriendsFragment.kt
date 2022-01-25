@@ -7,16 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.add
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.treker_fefu.R
 import com.example.treker_fefu.databinding.FragmentFriendsBinding
 import com.example.treker_fefu.mapscreens.activityscreens.MapsActivity
-import com.example.treker_fefu.model.arrival.Arrival
-import com.example.treker_fefu.model.arrival.ArrivalService
-import com.example.treker_fefu.model.arrival.ArrivalsListener
-import com.example.treker_fefu.model.arrival.AdapterArrival
-import com.example.treker_fefu.model.arrival.ArrivalActionListener
+import com.example.treker_fefu.model.arrival.*
 import java.util.ArrayList
 
 private const val ARG_PARAM1 = "param1"
@@ -24,10 +21,18 @@ private const val ARG_PARAM2 = "param2"
 
 class FriendsFragment : Fragment() {
     private var _binding: FragmentFriendsBinding? = null
-    private val arrivalService = ArrivalService()
     private val adapter = AdapterArrival(
         object : ArrivalActionListener {
-            override fun onArrivalDetails(arrival: Arrival) {
+            override fun onArrivalDetails(arrival: ListArrival.Arrival) {
+                val id = arrival.id.toString()
+                val tgp = "friends_data"
+                val arrayList = ArrayList<String>()
+                arrayList.add(id)
+                arrayList.add(tgp)
+                val bundle = Bundle()
+                val fr = FragmentFull_InfoItemArrival()
+                fr.arguments = bundle
+                bundle.putStringArrayList("myArg", arrayList)
                 activity!!.supportFragmentManager.beginTransaction().apply {
                     val visibleFragment =
                         activity!!.supportFragmentManager.fragments.firstOrNull { !isHidden }
@@ -36,8 +41,8 @@ class FriendsFragment : Fragment() {
                     }
                     add(
                         R.id.fragmentContainerView,
-                        FragmentFull_InfoItemArrival(arrival, "friends_data"),
-                        "friends_arrival_details"
+                        fr,
+                        fr.tag,
                     )
                     commit()
                 }
@@ -59,7 +64,7 @@ class FriendsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFriendsBinding.inflate(inflater, container, false)
         return binding.root
@@ -80,18 +85,14 @@ class FriendsFragment : Fragment() {
         val recyclerView: RecyclerView = binding.includeRVArrivalFullInfo.rVArrivalFullInfo
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = adapter
-        arrivalService.addListener(arrivalListener)
-
+        //TODO ну пока что  могу лишь черновиками заполнить
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        arrivalService.removeListener(arrivalListener)
+
         _binding = null
     }
 
-    private val arrivalListener: ArrivalsListener = {
-        adapter.arrivals = it as ArrayList<Arrival>
-    }
 
 }
